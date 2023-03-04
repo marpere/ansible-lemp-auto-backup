@@ -20,8 +20,9 @@
   ansible.builtin.file:
     dest: "{{ system.directories.web_content }}app-web"
     state: directory
+    mode: '0755'
 
-- name: create app index
+- name: Create app index
   ansible.builtin.copy:
     dest: "{{ system.directories.web_content }}app-web/index.php"
     content: |
