@@ -3,8 +3,7 @@ dnf install -y sudo git ansible-core
 alias ll="ls -l"
 adduser nginx
 cd /home/nginx/
-mkdir .ssh /srv/git/ /srv/http/ && chmod 700 .ssh 
-touch .ssh/id_rsa .ssh/config && chmod 600 .ssh/id_rsa .ssh/config
+mkdir /srv/git/ /srv/http/
 chown -R nginx:nginx .ssh /srv/ /srv/git /srv/http/
 cd /srv/git/
 sudo -u nginx bash << EOF
