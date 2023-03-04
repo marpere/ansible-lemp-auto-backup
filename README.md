@@ -1,13 +1,10 @@
 # ansible-lemp-auto-backup
 Configure LEMP Stack + daily Dropbox backup for the DB schemas
-## Supported OSs
-- RHEL 8 (CentOS, Rocky, Alma)
-- RHEL 9 (CentOS Stream, Rocky, Alma)
 ## LEMP Stack
-- (L) Linux (RHEL 8 or 9)
-- (E) NGINX (Latest in AppStream repo. Configured to PHP-FPM over socket)
-- (M) MariaDB (Latest in AppStream repo. Secured installation)
-- (P) PHP (8.1 from Remi repo. PHP + FPM + Opcache)
+- (L) Linux - Supports RHEL 8 and 9 (CentOS, Rocky, Alma)
+- (E) NGINX  - Latest version in AppStream repo. Configured to PHP-FPM over socket
+- (M) MariaDB - Latest version in AppStream repo. Secure installation
+- (P) PHP - 8.1 from Remi repo. PHP + FPM + Opcache
 ## Auto backup
 - Dropbox CLI installation
 - Daily crontab dumps the database into the synced Dropbox directory
