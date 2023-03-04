@@ -14,10 +14,11 @@ Configure LEMP Stack + daily Dropbox backup for the DB
 - Deletes dumps older than 30 days (can be personalized) to avoid the Dropbox account to reach its limit
 - Steps to activate Dropbox on CLI
     - After playbook execution:
-        - Run `systemctl dropboxd status`
-        - Copy the link on the log into a browser
-        - Authorize Dropbox use in the device (the one we installed)
-- Dropbox only is installed when using `--extra-vars "env=production"` to invoke the ansible-playbook
+        - Run `systemctl status dropbox`
+        - In the logs showed will have a Dropbox link
+        - Access the link into a browser
+        - Authorize Dropbox use in the device
+- Dropbox is only installed when using `--extra-vars "env=production"` to invoke the ansible-playbook
 ## Playbook usage
 Copy and paste the commands of the file `./initial_setup.sh` into the console
 ## Playbook usage in WSL2
