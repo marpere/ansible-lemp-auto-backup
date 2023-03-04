@@ -20,13 +20,13 @@ Configure LEMP Stack + daily Dropbox backup for the DB schemas
 `./vars/all.yml`
 
 ## Playbook usage
-Copy and paste the commands of the file `./initial_setup.sh` into the console
+Copy and paste the commands of the file `./initial_setup.sh` into the terminal
 ## Playbook usage in WSL2
 First create the Rocky Linux 9 distribution with the Powershell script:
 
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
 
-Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution console
+Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution terminal
 * Requirements: WSL2 (Microsoft Store version - Windows 10[KB5020030] or Windows 11[KB5019157]). Only since those versions the WSL allow systemd to be enabled.
 ## Test
 
