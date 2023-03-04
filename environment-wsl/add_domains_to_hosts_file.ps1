@@ -6,7 +6,7 @@ function Add-DomainToHostsFile{
         ,[bool]$CheckHostnameOnly = $false
     )
 
-    $hostsFilePath = "$($Env:WinDir)\system32\Drivers\etc\hosts"
+    $hostsFilePath = "$($Env:WinDir)\System32\drivers\etc\hosts"
     $hostsFile = Get-Content $hostsFilePath
 
     Write-Host "About to add $desiredIP for $Hostname to hosts file" -ForegroundColor Gray
@@ -23,4 +23,4 @@ function Add-DomainToHostsFile{
     }
 }
 
-Add-DomainToHostsFile -Hostname local.app.com.br -DesiredIP 127.0.0.1
+Add-DomainToHostsFile -Hostname local.app.com -DesiredIP 127.0.0.1
