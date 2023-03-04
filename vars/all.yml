@@ -13,13 +13,11 @@ system:
 git:
   root_directory: /srv/git/
 app:
-  domain: app.com
-  subdomains:
-    localhost: local
+  domain: app-web.com
   directories:
     infra: "{{ git.root_directory }}ansible-lemp-with-auto-backup-for-rhel/"
     web:
-      main: "{{ git.root_directory }}app-web/"
+      main: "{{ system.directories.web_content }}app-web/"
   database:
     user: app
     password: ChangeForAVaultedSecretInProduction
