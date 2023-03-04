@@ -19,9 +19,14 @@ Configure LEMP Stack + daily Dropbox auto backup for the DB using Ansible
         - Authorize Dropbox use in the device (the one we installed)
 - Dropbox only is installed when using `--extra-vars "env=production"` to invoke the ansible-playbook
 ## Playbook usage
-    ./initial_setup.sh
-## WSL2 Environment preparation
-
-Import Rocky Linux to your WSL2 running:
+Copy and paste the commands of the file `./initial_setup.sh` into the console
+## Playbook usage in WSL2
+First create the Rocky Linux 9 distribution with the Powershell script:
 
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
+
+Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution console
+
+## Test
+
+Access http://localhost or the equivalent DNS of the machine, you should see the phpinfo page

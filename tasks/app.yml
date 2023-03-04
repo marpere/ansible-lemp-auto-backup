@@ -18,12 +18,12 @@
 
 - name: Create app directory
   ansible.builtin.file:
-    dest: "{{ system.directories.web_content }}app-web"
+    dest: "{{ system.directories.web_content }}app"
     state: directory
 
 - name: Create app index
   ansible.builtin.copy:
-    dest: "{{ system.directories.web_content }}app-web/index.php"
+    dest: "{{ system.directories.web_content }}app/index.php"
     content: "<?php phpinfo(); ?>"
 
 - name: Add nginx app server block

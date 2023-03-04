@@ -5,7 +5,7 @@ backup_file_extensions=".sql.gz"
 date_iso_string_today=`date +%Y-%m-%d`
 date_iso_string_thirty_days_ago=`date --date="30 days ago" +%Y-%m-%d`
 function dump_and_compact_database_with_daily_name(){
-    /usr/bin/mysqldump --add-drop-table --default-character-set=latin1 --no-set-names --databases app | /bin/gzip > $dropbox_sync_directory$backup_file_prefix$date_iso_string_today$backup_file_extensions
+    /usr/bin/mysqldump --add-drop-table --default-character-set=latin1 --no-set-names --databases {{app.name}} | /bin/gzip > $dropbox_sync_directory$backup_file_prefix$date_iso_string_today$backup_file_extensions
 }
 function remove_dump_from_thirty_days_ago(){
     rm -f $dropbox_sync_directory$backup_file_prefix$date_iso_string_thirty_days_ago$backup_file_extensions
