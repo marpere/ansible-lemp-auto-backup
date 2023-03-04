@@ -26,15 +26,6 @@
     dest: "{{ system.directories.web_content }}app-web/index.php"
     content: "<?php phpinfo(); ?>"
 
-- name: Create symlink from /srv/git to /srv/http
-  ansible.builtin.file:
-    src: "{{ app.directories.web }}"
-    dest: "{{ system.directories.web_content }}app-web"
-    owner: "{{ system.user }}"
-    group: "{{ system.group }}"
-    state: link
-    follow: false
-
 - name: Add nginx app server block
   ansible.builtin.template:
     src: etc/nginx/conf.d/app.conf.j2
