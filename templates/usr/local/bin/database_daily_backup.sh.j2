@@ -1,6 +1,6 @@
 #!/bin/bash
 dropbox_sync_directory={{ dropbox.synced_directory }}
-backup_file_prefix="therocky-mariadb-dump-"
+backup_file_prefix="app-mariadb-dump-"
 backup_file_extensions=".sql.gz"
 date_iso_string_today=`date +%Y-%m-%d`
 date_iso_string_thirty_days_ago=`date --date="30 days ago" +%Y-%m-%d`
