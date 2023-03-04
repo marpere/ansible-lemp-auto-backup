@@ -4,7 +4,7 @@ Configure LEMP Stack + daily Dropbox auto backup for the DB using Ansible
 - RHEL 8 (CentOS, Rocky, Alma)
 - RHEL 9 (CentOS Stream, Rocky, Alma)
 ## LEMP Stack
-- (L) Linux (RHEL 8 or 9. VPS, WSL2 or Docker)
+- (L) Linux (RHEL 8 or 9)
 - (E) NGINX (Latest in AppStream repo. Configured to PHP-FPM over socket)
 - (M) MariaDB (Latest in AppStream repo. Secured installation)
 - (P) PHP (8.1 from Remi repo. PHP + FPM + Opcache)
@@ -17,14 +17,11 @@ Configure LEMP Stack + daily Dropbox auto backup for the DB using Ansible
         - Run `systemctl dropboxd status`
         - Copy the link on the log into a browser
         - Authorize Dropbox use in the device (the one we installed)
-- Dropbox only installs when using `--extra-vars "env=production"` to invoke the ansible-playbook
-## Usage
+- Dropbox only is installed when using `--extra-vars "env=production"` to invoke the ansible-playbook
+## Playbook usage
     ./initial_setup.sh
 ## WSL2 Environment preparation
-If you want to acess through a easy local dns (local.app.com) instead of localhost, run:
 
-    ./environment-wsl/add_domains_to_hosts_file.ps1
-
-To import Rocky Linux to your WSL2
+Import Rocky Linux to your WSL2 running:
 
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
