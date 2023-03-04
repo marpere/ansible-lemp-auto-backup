@@ -18,16 +18,16 @@ Configure LEMP Stack + daily Dropbox backup for the DB
         - In the logs showed will have a Dropbox link
         - Access the link into a browser
         - Authorize Dropbox use in the device
-## Playbook usage
-Configure your preferences on `./vars/all.yml`
+## Configurations
 
+`./vars/all.yml`
+
+## Playbook usage
 Copy and paste the commands of the file `./initial_setup.sh` into the console
 ## Playbook usage in WSL2
 First create the Rocky Linux 9 distribution with the Powershell script:
 
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
-
-Configure your preferences on `./vars/all.yml`
 
 Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution console
 
