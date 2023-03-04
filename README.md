@@ -20,14 +20,24 @@ Configure LEMP Stack + daily Dropbox backup for the DB schemas
 `./vars/all.yml`
 
 ## Playbook usage
-Copy and paste the commands of the file `./initial_setup.sh` into the terminal
+1. Auto Download
+    - Copy and paste the commands of the file `./initial_setup.sh` into the terminal
+        - It will GIT clone and run the ansible playbook
+
+2. Manual Download
+    - Create user `nginx` and the directories `/srv/git/` and `/srv/http/`
+    - GIT clone the project into `/srv/git/`
+    - Run the playbook with the script `./run_tasks.sh`
 ## Playbook usage in WSL2
-First create the Rocky Linux 9 distribution with the Powershell script:
+Before run the playbook, create the Rocky Linux 9 distribution with the Powershell script:
 
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
 
-Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution terminal
-* Requirements: WSL2 (Microsoft Store version - Windows 10[KB5020030] or Windows 11[KB5019157]). Only since those versions the WSL allow systemd to be enabled.
+It will download the distro in the first time it executes.
+
+### Requirements:
+    WSL2  - Microsoft Store version - Updates: Windows 10(KB5020030) or Windows 11(KB5019157). 
+    Prior versions of the WSL don't allow systemd.
 ## Test
 
 Access http://localhost or the equivalent DNS of the machine, you should see the phpinfo page
