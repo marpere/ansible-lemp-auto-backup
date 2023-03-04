@@ -1,17 +1,17 @@
 ---
 - name: Create app schema
-  community.mysql.mysql_db: 
+  community.mysql.mysql_db:
     name: app
     state: present
     login_user: root
-    login_password: "{{ mariadb.root_password }}"    
+    login_password: "{{ mariadb.root_password }}"
   notify: Import app schema
 
 - name: Create app db user
   community.mysql.mysql_user:
     name: "{{ app.database.user }}"
     password: "{{ app.database.password }}"
-    priv: 'app.*:ALL,GRANT'
+    priv: "app.*:ALL,GRANT"
     state: present
     login_user: root
     login_password: "{{ mariadb.root_password }}"
@@ -20,19 +20,12 @@
   ansible.builtin.file:
     dest: "{{ system.directories.web_content }}app-web"
     state: directory
-    mode: '0755'
 
 - name: Create app index
   ansible.builtin.copy:
     dest: "{{ system.directories.web_content }}app-web/index.php"
     content: "<?php phpinfo(); ?>"
 
-  ansible.builtin.git:
-    repo: git@github.com:max171/app-classic-web.git
-    dest: "{{ app.directories.web }}"
-  become: true
-  become_user: "{{ system.user }}"
-  
 - name: Create symlink from /srv/git to /srv/http
   ansible.builtin.file:
     src: "{{ app.directories.web }}"
