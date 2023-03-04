@@ -11,6 +11,7 @@ function Initialize-Distribution{
 
     if($SkipDownloadIfAlreadyDownloaded){
         if (-not($isImageDownloaded)) {
+            Write-Host "Downloading Rocky Linux Distro for WSL."
             Invoke-WebRequest -Uri $rockyLInux9WslImageUrlDownload -OutFile $rockyLinux9WslImageLocalFile
         }
     }
