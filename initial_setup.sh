@@ -4,7 +4,7 @@ alias ll="ls -l"
 adduser nginx
 cd /home/nginx/
 mkdir /srv/git/ /srv/http/
-chown -R nginx:nginx .ssh /srv/ /srv/git /srv/http/
+chown -R nginx:nginx /srv/ /srv/git /srv/http/
 cd /srv/git/
 sudo -u nginx bash << EOF
 git clone https://github.com/max171/ansible-lemp-with-auto-backup-for-rhel.git
