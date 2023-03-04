@@ -25,10 +25,7 @@
 - name: Create app index
   ansible.builtin.copy:
     dest: "{{ system.directories.web_content }}app-web/index.php"
-    content: |
-      <?php
-      phpinfo();
-      ?>
+    content: "<?php phpinfo(); ?>"
 
   ansible.builtin.git:
     repo: git@github.com:max171/app-classic-web.git
