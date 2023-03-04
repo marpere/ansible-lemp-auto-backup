@@ -5,7 +5,7 @@ Configure LEMP Stack + daily Dropbox backup for the DB schemas
 - (E) NGINX  - Latest version in AppStream repo. Configured to PHP-FPM over socket
 - (M) MariaDB - Latest version in AppStream repo. Secure installation
 - (P) PHP - 8.1 from Remi repo. PHP + FPM + Opcache
-## Auto backup
+## Dropbox auto backup
 - Dropbox CLI installation
 - Daily crontab dumps the database into the synced Dropbox directory
 - Deletes dumps older than 30 days (can be personalized) to avoid the Dropbox account to reach its limit
