@@ -20,11 +20,15 @@ Configure LEMP Stack + daily Dropbox backup for the DB
         - Authorize Dropbox use in the device
 - Dropbox is only installed when using `--extra-vars "env=production"` to invoke the ansible-playbook
 ## Playbook usage
+Configure your preferences on `./vars/all.yml`
+
 Copy and paste the commands of the file `./initial_setup.sh` into the console
 ## Playbook usage in WSL2
 First create the Rocky Linux 9 distribution with the Powershell script:
 
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
+
+Configure your preferences on `./vars/all.yml`
 
 Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution console
 
