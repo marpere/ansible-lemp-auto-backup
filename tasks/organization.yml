@@ -4,4 +4,4 @@
     src: "{{ item.value }}"
     path: "/root/{{ item.key | basename }}"
     state: link
-  with_dict: "{{ symlinks }}"
+  with_dict: "{{ root_symlinks }}"
