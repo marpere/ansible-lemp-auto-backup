@@ -30,7 +30,7 @@ First create the Rocky Linux 9 distribution with the Powershell script:
     ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
 
 Then, copy and paste the commands of the file `./initial_setup.sh` into the distribution console
-
+* Requirements: WSL2 (Microsoft Store version - Windows 10[KB5020030] or Windows 11[KB5019157]). Only since those versions WSL allow system to be enabled.
 ## Test
 
 Access http://localhost or the equivalent DNS of the machine, you should see the phpinfo page
