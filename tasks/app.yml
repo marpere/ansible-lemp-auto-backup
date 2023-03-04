@@ -1,0 +1,44 @@
+---
+- name: Create sample_app schema
+  community.mysql.mysql_db: 
+    name: sample_app
+    state: present
+    login_user: root
+    login_password: "{{ mariadb.root_password }}"    
+  notify: Import sample_app schema
+
+- name: Create app user
+  community.mysql.mysql_user:
+    name: "{{ app.database.user }}"
+    password: "{{ app.database.password }}"
+    priv: 'sample_app.*:ALL,GRANT'
+    state: present
+    login_user: root
+    login_password: "{{ mariadb.root_password }}"
+
+- name: Clone app classic repository
+  ansible.builtin.git:
+    repo: git@github.com:max171/app-classic-web.git
+    dest: "{{ app.directories.web }}"
+  become: true
+  become_user: "{{ system.user }}"
+  
+- name: Password for admin area
+  ansible.builtin.copy:
+    src: files/.htpasswd
+    dest: /etc/nginx/conf.d/.htpasswd
+
+- name: Create symlink from /srv/git to /srv/http
+  ansible.builtin.file:
+    src: "{{ app.directories.web.classic }}"
+    dest: "{{ system.directories.web_content }}app-web"
+    owner: "{{ system.user }}"
+    group: "{{ system.group }}"
+    state: link
+    follow: false
+
+- name: Add nginx app classic server block
+  ansible.builtin.template:
+    src: etc/nginx/conf.d/sample_app.conf.j2
+    dest: "{{ nginx.directories.conf_d }}app.conf"
+  notify: Reload nginx

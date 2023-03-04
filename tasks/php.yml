@@ -1,0 +1,30 @@
+---
+- name: Install PHP packages
+  ansible.builtin.package:
+    name: 
+      - '@php:remi-8.1'
+      - php-opcache
+      - php-mysql
+    state: present
+
+- name: Set PHP timezone
+  ansible.builtin.lineinfile:
+    path: /etc/php.ini
+    search_string: ';date.timezone ='
+    line: "date.timezone = {{ system.time_zone }}"
+
+- name: Remove apache php-fpm config
+  ansible.builtin.file:
+    path: /etc/php-fpm.d/www.conf
+    state: absent
+
+- name: Create nginx php-fpm config
+  ansible.builtin.template:
+    src: etc/php-fpm.d/fpm_nginx.conf.j2
+    dest: /etc/php-fpm.d/nginx.conf
+
+- name: Start and enable php-fpm service
+  ansible.builtin.service:
+    name: php-fpm
+    state: started
+    enabled: yes

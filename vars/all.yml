@@ -1,0 +1,54 @@
+---
+system:
+  hostname: "{{ 'srv-app-prd' if env == 'production' else 'srv-app-dev' }}"
+  time_zone: America/Sao_Paulo
+  user: nginx
+  group: nginx
+  directories:
+    self_contained_software: /opt/
+    systemd_services: /etc/systemd/system/
+    web_content: /srv/http/
+    cron_configuration: /etc/cron.d/
+    general_scripts: /usr/local/bin/
+git:
+  root_directory: /srv/git/
+app:
+  domain: app.com
+  subdomains:
+    localhost: local
+  directories:
+    infra: "{{ git.root_directory }}ansible-lemp-with-auto-backup-for-rhel/"
+    web:
+      main: "{{ git.root_directory }}app-web/"
+  database:
+    user: app
+    password: ChangeForAVaultedSecretInProduction
+php_fpm:
+  runtime_directory: /run/php-fpm/
+  socket_name: nginx.sock
+nginx:
+  directories:
+    conf_d: /etc/nginx/conf.d/
+  files:
+    nginx_conf: /etc/nginx/nginx.conf
+    access_log: /var/log/nginx/access.log
+    error_log: /var/log/nginx/error.log
+  ownerships:
+    php_fpm_runtime: "{{ php_fpm.runtime_directory }}"
+mariadb:
+  root_password: ChangeForAVaultedSecretInProduction
+dropbox:
+  user: yourdropboxuser
+  url_download_daemon: https://www.dropbox.com/download?plat=lnx.x86_64
+  daemon_directory : "{{ system.directories.self_contained_software }}dropbox/"
+  daemon_name: dropboxd
+  synced_directory: /home/nginx/Dropbox/
+  service_name: dropbox.service
+root_symlinks:
+  "{{ 
+    nginx.directories | 
+    combine(nginx.files) | 
+    combine([
+      {'app_infra' : app.directories.infra }
+    ])
+  }}"

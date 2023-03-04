@@ -1,0 +1,7 @@
+---
+- name: Create symlinks
+  ansible.builtin.file:
+    src: "{{ item.value }}"
+    path: "/root/{{ item.key | basename }}"
+    state: link
+  with_dict: "{{ symlinks }}"

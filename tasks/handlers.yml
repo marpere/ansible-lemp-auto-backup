@@ -1,0 +1,13 @@
+---
+- name: Reload nginx
+  ansible.builtin.service:
+    name: nginx
+    state: reloaded
+    
+- name: Import app schema
+  community.mysql.mysql_db:
+    name: app
+    state: import
+    target: "{{ app.directories.infra }}files/app-schema.sql"
+    login_user: root
+    login_password: "{{ mariadb.root_password }}"

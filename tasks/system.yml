@@ -1,0 +1,82 @@
+---
+- name: Upgrade all system packages
+  ansible.builtin.package:
+    name: "*"
+    state: latest
+
+- name: Install EPEL repo
+  ansible.builtin.package:
+    name: epel-release
+    state: latest
+
+- name: Install Remi Repo
+  ansible.builtin.package:
+    name: https://rpms.remirepo.net/enterprise/remi-release-9.rpm
+    state: present
+    disable_gpg_check: true
+
+- name: Install base packages
+  ansible.builtin.package:
+    name: 
+      - vim
+      - wget
+      - net-tools
+      - procps
+      - htop
+      - python-pip
+      - cronie-noanacron
+    state: latest
+
+- name: Set system hostname
+  ansible.builtin.hostname:
+    name: "{{ system.hostname }}"
+    use: systemd
+
+- name: Set system hosts
+  ansible.builtin.template:
+    src: etc/hosts.j2
+    dest: /etc/hosts
+
+- name: Set system timezone
+  community.general.timezone:
+    name: "{{ system.time_zone }}"
+
+- name: System security
+  block:
+  - name: Get list of services
+    service_facts:
+
+  - name: Permit traffic in services
+    ansible.posix.firewalld:
+      service: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+    loop:
+      - http
+      - https
+    when: "'firewalld' in services"
+
+  - name: Put SELinux in permissive mode
+    ansible.posix.selinux:
+      policy: targeted
+      state: permissive
+    when: "'firewalld' in services"
+
+- name: System auto update
+  block:  
+    - name: Install audo update package
+      ansible.builtin.package:
+        name: dnf-automatic
+        state: latest 
+        
+    - name: Set auto update to security level
+      ansible.builtin.lineinfile:
+        path: /etc/dnf/automatic.conf
+        search_string: 'upgrade_type = default'
+        line: upgrade_type = security
+        
+    - name: Enable auto update service
+      ansible.builtin.service:
+        name: dnf-automatic-install.timer
+        enabled: yes

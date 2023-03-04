@@ -1,0 +1,42 @@
+---
+- name: Install nginx package
+  ansible.builtin.package:
+    name: nginx
+    state: latest
+
+- name: Create nginx system group
+  ansible.builtin.group:
+    name: nginx
+    state: present
+
+- name: Create nginx system user
+  ansible.builtin.user:
+    name: "{{ system.user }}"
+    groups: "{{ system.group }}"
+    state: present
+    createhome: false
+
+- name: Create nginx config
+  ansible.builtin.template:
+    src: etc/nginx/nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+
+- name: Point nginx to the php-fpm socket created
+  ansible.builtin.lineinfile:
+    path: "{{ nginx.directories.conf_d }}php-fpm.conf"
+    search_string: 'server unix:/run/php-fpm/www.sock;'
+    line: "server unix:{{ php_fpm.runtime_directory }}{{ php_fpm.socket_name }};"
+
+- name: Change ownerships of folders to nginx user
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    owner: "{{ system.user }}"
+    group: "{{ system.group }}"
+    recurse: true
+  with_dict: "{{ nginx.ownerships }}"
+
+- name: Start and enable nginx service
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes

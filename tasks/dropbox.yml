@@ -1,0 +1,31 @@
+---
+- name: Create dropbox deamon directory
+  ansible.builtin.file:
+    path: "{{ dropbox.daemon_directory }}"
+    state: directory
+
+- name: Download and extract dropbox deamon
+  ansible.builtin.unarchive:
+    src: "{{ dropbox.url_download_daemon }}"
+    dest: "{{ dropbox.daemon_directory }}"
+    owner: "{{ system.user }}"
+    group: "{{ system.group }}"
+    remote_src: true
+    validate_certs: false
+    extra_opts: [--strip-components=1]
+
+- name: Set dropbox user
+  ansible.builtin.copy:
+    content: "DROPBOX_USERS=\"{{ dropbox.user }}\""
+    dest: /etc/sysconfig/dropbox
+
+- name: Create dropbox service
+  ansible.builtin.template:
+    src: etc/systemd/system/dropbox.service.j2
+    dest: "{{ system.directories.systemd_services }}{{ dropbox.service_name }}"    
+
+- name: Start and enable dropbox service
+  ansible.builtin.service:
+    name: "{{ dropbox.service_name }}"
+    state: started
+    enabled: yes
