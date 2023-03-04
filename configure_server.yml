@@ -13,9 +13,7 @@
     - ansible.builtin.import_tasks: tasks/mariadb.yml
     - ansible.builtin.import_tasks: tasks/app.yml
     - ansible.builtin.import_tasks: tasks/dropbox.yml
-      when: env == 'production'
     - ansible.builtin.import_tasks: tasks/schedules.yml
-      when: env == 'production'
     - ansible.builtin.import_tasks: tasks/organization.yml
   handlers:
     - ansible.builtin.import_tasks: tasks/handlers.yml

@@ -11,4 +11,4 @@ sudo -u nginx bash << EOF
 git clone https://github.com/max171/ansible-lemp-with-auto-backup-for-rhel.git
 EOF
 ansible-galaxy install -r /srv/git/ansible-lemp-with-auto-backup-for-rhel/requirements.yml
-ansible-playbook -v /srv/git/ansible-lemp-with-auto-backup-for-rhel/configure_server.yml --extra-vars "env=production"
+ansible-playbook -v /srv/git/ansible-lemp-with-auto-backup-for-rhel/configure_server.yml

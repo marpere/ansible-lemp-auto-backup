@@ -1,6 +1,6 @@
 ---
 system:
-  hostname: "{{ 'srv-app-prd' if env == 'production' else 'srv-app-dev' }}"
+  hostname: srv-app
   time_zone: America/Sao_Paulo
   user: nginx
   group: nginx

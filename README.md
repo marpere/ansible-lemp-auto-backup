@@ -18,7 +18,6 @@ Configure LEMP Stack + daily Dropbox backup for the DB
         - In the logs showed will have a Dropbox link
         - Access the link into a browser
         - Authorize Dropbox use in the device
-- Dropbox is only installed when using `--extra-vars "env=production"` to invoke the ansible-playbook
 ## Playbook usage
 Configure your preferences on `./vars/all.yml`
 
