@@ -17,12 +17,12 @@
     login_password: "{{ mariadb.root_password }}"
 
 - name: Create app directory
-  ansible.bultin.file:
+  ansible.builtin.file:
     dest: "{{ system.directories.web_content }}app-web"
     state: directory
 
 - name: create app index
-  ansible.bultin.copy:
+  ansible.builtin.copy:
     dest: "{{ system.directories.web_content }}app-web/index.php"
     content: |
       <?php
