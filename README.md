@@ -17,3 +17,10 @@ Configure LEMP Stack + daily Dropbox auto backup for the DB using Ansible
 ## Usage
     ansible-galaxy install -r ./requirements.yml
     ansible-playbook -v ./configure_server.yml --extra-vars "env=development"
+## WSL2 Usage
+To add domains to your Windows hosts file run:
+
+    ./environment-wsl/add_domains_to_hosts_file.ps1
+To donwload WSL2 Rocky Linux 9 and start and Distribution run:
+
+    ./import_rocky_linux_9_to_wsl.ps1
