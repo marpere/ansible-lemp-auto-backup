@@ -13,14 +13,18 @@ Configure LEMP Stack + daily Dropbox auto backup for the DB using Ansible
 - Daily crontab dumps the database into the synced Dropbox directory
 - Deletes dumps older than 30 days (can be personalized) to avoid the Dropbox account to reach its limit
 - Steps to activate Dropbox on CLI
-    - After finish script
+    - After playbook execution:
+        - Run `systemctl dropboxd status`
+        - Copy the link on the log into a browser
+        - Authorize Dropbox use in the device (the one we installed)
+- Dropbox only installs when using `--extra-vars "env=production"` to invoke the ansible-playbook
 ## Usage
-    ansible-galaxy install -r ./requirements.yml
-    ansible-playbook -v ./configure_server.yml --extra-vars "env=development"
-## WSL2 Usage
-To add domains to your Windows hosts file run:
+    ./initial_setup.sh
+## WSL2 Environment preparation
+If you want to acess through a easy local dns (local.app.com) instead of localhost, run:
 
     ./environment-wsl/add_domains_to_hosts_file.ps1
-To donwload WSL2 Rocky Linux 9 and start and Distribution run:
 
-    ./import_rocky_linux_9_to_wsl.ps1
+To import Rocky Linux to your WSL2
+
+    ./environment-wsl/import_rocky_linux_9_to_wsl.ps1
