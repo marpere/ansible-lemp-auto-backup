@@ -5,10 +5,6 @@ server {
     root           {{ app.directories.web.classic }};
     include        /etc/nginx/default.d/*.conf;
     try_files $uri $uri/ /index.php?$args;
-    location /admin {
-        auth_basic "Restricted access";
-        auth_basic_user_file conf.d/.htpasswd;
-    }
     location ~ /(protected|\.) {
         deny all;log_not_found off;access_log off;
     }

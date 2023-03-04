@@ -8,8 +8,3 @@
   ansible.builtin.template:
     src: etc/cron.d/database_daily_backup.j2
     dest: "{{ system.directories.cron_configuration }}database_daily_backup"
-
-- name: Create app email schedules
-  ansible.builtin.template:
-    src: etc/cron.d/app_schedules.j2
-    dest: "{{ system.directories.cron_configuration }}app_schedules"

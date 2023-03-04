@@ -1,4 +1,4 @@
-$WsldistributionName = "rocky-linux-9"
+$WsldistributionName = "rocky-9"
 $rockyLInux9WslImageName = "Rocky-9-Container-Base.latest.x86_64.tar.xz"
 $rockyLinux9WslImageLocalFile = "./$rockyLInux9WslImageName"
 $rockyLInux9WslImageUrlDownload = "https://download.rockylinux.org/pub/rocky/9/images/x86_64/$rockyLInux9WslImageName"

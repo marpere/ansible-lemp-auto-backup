@@ -1,4 +1,4 @@
-$distribution = "rocky-linux-9"
+$distribution = "rocky-9"
 function Uninstall-Distribution{
     wsl --unregister $distribution --version 2
 }
