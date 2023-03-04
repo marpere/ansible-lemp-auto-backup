@@ -1,4 +1,4 @@
-# ansible-lemp-with-auto-backup-for-rhel
+# ansible-lemp-auto-backup
 Configure LEMP Stack + daily Dropbox backup for the DB
 ## Supported OSs
 - RHEL 8 (CentOS, Rocky, Alma)

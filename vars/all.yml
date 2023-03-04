@@ -16,7 +16,7 @@ app:
   name: app
   domain: app.com
   directories:
-    infra: "{{ git.root_directory }}ansible-lemp-with-auto-backup-for-rhel/"
+    infra: "{{ git.root_directory }}ansible-lemp-auto-backup/"
     web: "{{ system.directories.web_content }}app/"
   database:
     user: app
