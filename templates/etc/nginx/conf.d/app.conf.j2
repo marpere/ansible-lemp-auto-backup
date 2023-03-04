@@ -2,7 +2,7 @@ server {
     listen         80 default_server;
     listen         [::]:80 default_server;
     server_name    {{ app.domain }};
-    root           {{ app.directories.web.main}};
+    root           {{ app.directories.web}};
     include        /etc/nginx/default.d/*.conf;
     try_files $uri $uri/ /index.php?$args;
     location ~ /(protected|\.) {

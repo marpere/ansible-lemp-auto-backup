@@ -17,8 +17,7 @@ app:
   domain: app.com
   directories:
     infra: "{{ git.root_directory }}ansible-lemp-with-auto-backup-for-rhel/"
-    web:
-      main: "{{ system.directories.web_content }}app/"
+    web: "{{ system.directories.web_content }}app/"
   database:
     user: app
     password: ChangeForAVaultedSecretInProduction
