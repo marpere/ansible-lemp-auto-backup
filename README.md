@@ -35,7 +35,7 @@ Before run the playbook, create the Rocky Linux 9 distribution with the Powershe
 
 It will download the distro in the first time it executes.
 
-### Requirements:
+### Requirements to run in WSL2:
     WSL2  - Microsoft Store version - Updates: Windows 10(KB5020030) or Windows 11(KB5019157). 
     Prior versions of the WSL don't allow systemd.
 ## Test
