@@ -1,5 +1,5 @@
 # Ansible LEMP with DB auto backup
-Configure LEMP Stack + daily Dropbox backup for the DB schemas
+Configure LEMP Stack + daily Dropbox backup for the MariaDB schemas
 ## LEMP Stack
 - (L) Linux - Supports RHEL 8 and 9 (CentOS, Rocky, Alma)
 - (E) NGINX  - Latest version in AppStream repo. Configured to PHP-FPM over socket
